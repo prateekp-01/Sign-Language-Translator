@@ -1,10 +1,18 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[1]:
-
 
 import cv2,os
+import numpy as np
+from sklearn.model_selection import train_test_split
+from keras.models import Sequential
+from keras.layers import Convolution2D
+from keras.layers import MaxPooling2D
+from keras.layers import Flatten
+from keras.layers import Dense , Dropout
+import matplotlib.pyplot as plt
+from keras.callbacks import ModelCheckpoint
+import os
 
 data_path='DATASET'
 categories=os.listdir(data_path)
@@ -17,8 +25,6 @@ print(categories)
 print(labels)
 
 
-# In[5]:
-
 
 data_path='DATASET/train'
 classes_path=os.listdir(data_path)
@@ -26,41 +32,17 @@ classesf=os.listdir(data_path)
 print(classesf)
 labels_classes=[i for i in range(len(classesf))]
 print(labels_classes)
-
-
-# In[81]:
-
-
 data_path='DATASET'
 
-
-# In[75]:
-
-
 label_classes_dict=dict(zip(classesf,labels_classes))
-
-
-# In[76]:
-
 
 #print(labels_classes)
 #print(categories)
 print(label_classes_dict)
 
 
-# In[77]:
 
 
-import numpy as np
-
-
-# In[ ]:
-
-
-
-
-
-# In[82]:
 
 
 img_size=128
@@ -100,24 +82,15 @@ for category in categories:
             except Exception as e:
                 print('Exception:',e)
             
-            
-        
-        
 
-
-# In[83]:
 
 
 datanp=np.array(data)
 
 
-# In[84]:
-
 
 datanp.shape
 
-
-# In[85]:
 
 
 targetnp=np.array(target)
@@ -125,10 +98,6 @@ targetnp=np.array(target)
 targetnp.shape
 
 
-# In[86]:
-
-
-import numpy as np
 
 data=np.array(data)/255.0
 data=np.reshape(data,(data.shape[0],img_size,img_size,1))
@@ -139,70 +108,37 @@ from keras.utils import np_utils
 new_target=np_utils.to_categorical(target)
 
 
-# In[87]:
-
 
 new_target.shape
 
-
-# In[ ]:
-
-
-
-
-
-# In[88]:
 
 
 np.save('data_img',data)
 np.save('target',new_target)
 
 
-# In[89]:
-
-
 data=np.load('data_img.npy')
 target=np.load('target.npy')
 
 
-# In[90]:
 
 
-from sklearn.model_selection import train_test_split
 train_data,test_data,train_target,test_target=train_test_split(data,new_target,test_size=0.2)
 
 
-# In[91]:
 
 
-from keras.models import Sequential
-from keras.layers import Convolution2D
-from keras.layers import MaxPooling2D
-from keras.layers import Flatten
-from keras.layers import Dense , Dropout
-import os
+
 os.environ["CUDA_VISIBLE_DEVICES"] = "1"
 sz = 128
-# Step 1 - Building the CNN
-
-# Initializing the CNN
 classifier = Sequential()
 
-# First convolution layer and pooling
 classifier.add(Convolution2D(32, (3, 3), input_shape=(sz, sz, 1), activation='relu'))
 classifier.add(MaxPooling2D(pool_size=(2, 2)))
-# Second convolution layer and pooling
 classifier.add(Convolution2D(32, (3, 3), activation='relu'))
-# input_shape is going to be the pooled feature maps from the previous convolution layer
 classifier.add(MaxPooling2D(pool_size=(2, 2)))
-#classifier.add(Convolution2D(32, (3, 3), activation='relu'))
-# input_shape is going to be the pooled feature maps from the previous convolution layer
-#classifier.add(MaxPooling2D(pool_size=(2, 2)))
 
-# Flattening the layers
 classifier.add(Flatten())
-
-# Adding a fully connected layer
 classifier.add(Dense(units=128, activation='relu'))
 classifier.add(Dropout(0.40))
 classifier.add(Dense(units=96, activation='relu'))
@@ -210,21 +146,16 @@ classifier.add(Dropout(0.40))
 classifier.add(Dense(units=64, activation='relu'))
 classifier.add(Dense(units=27, activation='softmax')) # softmax for more than 2
 
-# Compiling the CNN
 classifier.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy']) # categorical_crossentropy for more than 2
 
 
-# Step 2 - Preparing the train/test data and training the model
 classifier.summary()
 
 
-# In[92]:
 
 
-from keras.callbacks import ModelCheckpoint
 
 
-# In[93]:
 
 
 checkpoint = ModelCheckpoint('model-{epoch:03d}.model',monitor='val_loss',verbose=0,save_best_only=True,mode='auto')
@@ -278,8 +209,6 @@ plt.show()
 
 # In[105]:
 
-
-import matplotlib.pyplot as plt
 plt.plot(history.history['accuracy'])
 plt.plot(history.history['val_accuracy'])
 plt.xlabel('epochs')
