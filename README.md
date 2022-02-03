@@ -24,8 +24,6 @@
 
 It can be developed as a desktop or mobile application to enable specially abled people to communicate easily and effectively with others
 
-**Sign language is a visual language that is used by deaf people as their mother tongue. Unlike acoustically conveyed sound patterns, sign language uses body language and manual communication to fluidly convey the thoughts of a person. Due to considerable time required in learning the Sign Language, people find it difficult to communicate with these specially abled people, creating a communication gap. Thus, we propose an application which takes in live speech or audio recording as input, converts it into text and displays the relevant Indian Sign Language images or GIFs.**
-
 ## Algorithm
 Audio to Sign Language Translator
 1. Start
@@ -47,8 +45,6 @@ respective GIFs of the Phrase.
    4. Continue all the steps from Step 3, and continue till the Speech Ends.
 6. If Error in Step 2, That is if no Speech Detected then display error message
 “Could not listen”.
-
-**Due to considerable time required in learning the Sign Language, people find it difficult to communicate with these specially abled people, creating a communication gap. Thus the Audio to Sign Language converter is important and significant because it helps in providing information access and services to deaf people in Indian sign language and develops a scalable project which can be extended to capture whole vocabulary of ISL through manual and non-manual signs. It also can be developed as a desktop or mobile application to enable specially abled people to communicate easily and effectively with others.**
 
 
 
