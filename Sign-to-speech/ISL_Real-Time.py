@@ -71,13 +71,8 @@ for category in categories:
                 blur = cv2.GaussianBlur(gray,(5,5),2)
                 th3 = cv2.adaptiveThreshold(blur,255,cv2.ADAPTIVE_THRESH_GAUSSIAN_C,cv2.THRESH_BINARY_INV,11,2)
                 ret, res = cv2.threshold(th3, minValue, 255, cv2.THRESH_BINARY_INV+cv2.THRESH_OTSU)
-                #res=np.array(res)
-                #print(type(res))
-            #Converting the image into gray scale
                 resized=cv2.resize(res,(img_size,img_size))
-            #resizing the gray scale into 50x50, since we need a fixed common size for all the images in the dataset
                 data.append(resized)
-                #print(data)
                 target.append(label_classes_dict[classes])
             except Exception as e:
                 print('Exception:',e)
@@ -162,13 +157,11 @@ checkpoint = ModelCheckpoint('model-{epoch:03d}.model',monitor='val_loss',verbos
 history=classifier.fit(train_data,train_target,shuffle=True,epochs=20,callbacks=[checkpoint],validation_split=0.3)
 
 
-# In[95]:
 
 
 print(classifier.evaluate(test_data,test_target))
 
 
-# In[100]:
 
 
 N = 20
@@ -186,19 +179,14 @@ plt.legend(loc="lower left")
 plt.savefig('evaluation.png')
 
 
-# In[104]:
 
-
-# serialize the model to disk
 print("[INFO] saving mask detector model...")
 classifier.save('isl_classifier.h5')
 print("Done !")
 
 
-# In[98]:
 
 
-import matplotlib.pyplot as plt
 plt.plot(history.history['loss'])
 plt.plot(history.history['val_loss'])
 plt.xlabel('epochs')
@@ -207,7 +195,7 @@ plt.legend(['train_loss','val_loss'], loc=0)
 plt.show()
 
 
-# In[105]:
+
 
 plt.plot(history.history['accuracy'])
 plt.plot(history.history['val_accuracy'])
@@ -216,8 +204,6 @@ plt.ylabel('Accuracy')
 plt.legend(['train_accuracy','val_accuracy'], loc=0)
 plt.show()
 
-
-# In[ ]:
 
 
 
