@@ -81,7 +81,7 @@ respective GIFs of the Phrase.
 - [TensorFlow](https://www.tensorflow.org/)
 
 
-## :file_folder: Data Distribution
+## :Data Distribution
 The dataset used can be downloaded here - [Click to Download](https://drive.google.com/drive/folders/16ce6Hc4U5Qr6YBArcozoYom6TT5-7oSc?usp=sharing)
 
 This dataset consists of __17113 images__ belonging to 27 classes:
@@ -89,8 +89,8 @@ This dataset consists of __17113 images__ belonging to 27 classes:
 
 
 
-## :star: Features
-Our model is capable of predicting gestures from Indian sign language in real-time with high efficiency. These __predicted alphabets__ are converted to form __words__ and hence forms __sentences__. These sentences are converted into __voice modules__ by incorporating __Google Text to Speech__(gTTS API).</br></br>
+## Features
+The model is capable of predicting gestures from Indian sign language in real-time with high efficiency. These __predicted alphabets__ are converted to form __words__ and hence forms __sentences__. These sentences are converted into __voice modules__ by incorporating __Google Text to Speech__(gTTS API).</br></br>
 The model is efficient, since we used a compact __CNN-based architecture__, it’s also computationally efficient and thus making it easier to deploy the model to embedded systems (Raspberry Pi, Google Coral, etc.). This system can therefore be used in real-time applications which aims at bridging the the gap in the process of communication between the __Deaf and Dumb people with rest of the world__.
 
 ## Feature Extraction
@@ -98,8 +98,6 @@ The model is efficient, since we used a compact __CNN-based architecture__, it�
 * Intensity is analyzed and Non-Maximum suppression is implemented to remove false edges.
 * For a better pre-processed image data, double thresholding is implemented to consider only the strong edges in the images.
 * All the weak edges are finally removed and only the strong edges are consdered for the further phases. <br />
-<br />![](Analysis/fe.png)<br />
-The above figure shows pre-processed image with extracted features which is sent to the model for classification.
 
 
 
