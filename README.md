@@ -58,7 +58,7 @@ respective GIFs of the Phrase.
 
 
 
-<h2>Sign Language to Speech Conversion </h2>
+# <h2>Sign Language to Speech Conversion </h2>
 
 <div align= "center">
   <h4>Sign Language to Speech Conversion system built with OpenCV, Keras/TensorFlow using Deep Learning and Computer Vision concepts in order to communicate using Indian Sign Language(ISL) based gestures in real-time video streams with differently abled. </h4>
@@ -81,7 +81,7 @@ respective GIFs of the Phrase.
 - [TensorFlow](https://www.tensorflow.org/)
 
 
-## :Data Distribution
+## Data Distribution
 The dataset used can be downloaded here - [Click to Download](https://drive.google.com/drive/folders/16ce6Hc4U5Qr6YBArcozoYom6TT5-7oSc?usp=sharing)
 
 This dataset consists of __17113 images__ belonging to 27 classes:
